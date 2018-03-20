@@ -60,7 +60,8 @@ INSTALL_TARGETS = [
 
 
 def _destination_dir_for_project(project_name):
-    # llvm is particular about the checkout locations of different sub-projects.
+    # llvm is particular about the checkout locations of different
+    # sub-projects.
     checkout_paths = {
         'llvm': '',
         'cfe': 'tools/clang',
@@ -79,6 +80,7 @@ def download_sources():
             svn_url = SVN_BASE_URL + '/' + p + '/' + SVN_TAG
             subprocess.check_call([
                 'svn', 'export', '-q', svn_url, dest_dir])
+
 
 def build():
     try:
@@ -115,11 +117,11 @@ def package():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--src-dir',
-        default='/tmp/llvm-builder/src', help='Path where the source will be downloaded')
+                        default='/tmp/llvm-builder/src', help='Path where the source will be downloaded')
     parser.add_argument('--build-dir',
-        default='/tmp/llvm-builder/build', help='Path to the build scratch dir')
+                        default='/tmp/llvm-builder/build', help='Path to the build scratch dir')
     parser.add_argument('--install-dir',
-        default='/tmp/llvm-builder/install')
+                        default='/tmp/llvm-builder/install')
     FLAGS = parser.parse_args()
 
     download_sources()
